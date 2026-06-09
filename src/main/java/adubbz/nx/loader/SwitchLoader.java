@@ -35,7 +35,7 @@ import ghidra.util.exception.CancelledException;
 
 public class SwitchLoader extends BinaryLoader 
 {
-    public static final String SWITCH_NAME = "Nintendo Switch Binary";
+    public static final String SWITCH_NAME = "Nintendo Switch Binary 0x0";
     public static final LanguageID AARCH64_LANGUAGE_ID = new LanguageID("AARCH64:LE:64:v8A");
     public static final LanguageID AARCH32_LANGUAGE_ID = new LanguageID("ARM:LE:32:v8");
     private BinaryType binaryType;
@@ -105,13 +105,7 @@ public class SwitchLoader extends BinaryLoader
         // Set the base address
         try 
         {
-            long baseAddress = adapter.isAarch32() ? 0x60000000L : 0x7100000000L;
-            
-            if (this.binaryType == BinaryType.KERNEL_800)
-            {
-                baseAddress = 0x80060000L;
-            }
-
+            long baseAddress = 0L;
             program.setImageBase(space.getAddress(baseAddress), true);
         } 
         catch (AddressOverflowException | LockException | IllegalStateException | AddressOutOfBoundsException e) 
